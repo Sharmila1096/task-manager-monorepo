@@ -1,0 +1,3 @@
+[6n[?9001h[?1004h[m]0;C:\WINDOWS\system32\cmd.exe[?25h[?25l
+> @repo/ui@0.0.0 lint C:\task-manager-monorepo\task-manager-monorepo\packages\ui
+> eslint . --max-warnings 0[5;1H[?25h[?9001l[?1004l
