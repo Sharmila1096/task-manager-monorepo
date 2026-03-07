@@ -1,74 +1,48 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-<<<<<<< HEAD
-# Dependencies
+# Node modules
 node_modules
-.pnp
-.pnp.js
+.pnpm-store
 
-# Local env files
+# Build outputs
+.next
+out
+dist
+build
+
+# Turbo cache
+.turbo
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
 .env
 .env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.development
+.env.production
 
-# Testing
-coverage
-
-# Turbo
-.turbo
+# OS files
+.DS_Store
+Thumbs.db
 
 # Vercel
 .vercel
 
-# Build Outputs
-.next/
-out/
-build
-dist
-
-
-# Debug
-=======
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
-.yarn/install-state.gz
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
->>>>>>> 97ec523c03aa7a64e6b8e08c1a6a4bd903d446de
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-<<<<<<< HEAD
-# Misc
-.DS_Store
-*.pem
-=======
-# env files (can opt-in for commiting if needed)
-.env*
-
-# vercel
-.vercel
-
-# typescript
+# TypeScript
 *.tsbuildinfo
-next-env.d.ts
->>>>>>> 97ec523c03aa7a64e6b8e08c1a6a4bd903d446de
+
+# Prisma
+prisma/migrations
+
+# Coverage
+coverage
+
+# Editor folders
+.vscode
+.idea
+
+# Lock files (optional depending on project policy)
+# package-lock.json
+# yarn.lock
