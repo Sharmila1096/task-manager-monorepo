@@ -3,10 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(
   _req: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const taskId = Number(params.id);
+    const { id } = await context.params;
+    const taskId = Number(id);
 
     const existing = await prisma.task.findUnique({
       where: { id: taskId },
