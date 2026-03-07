@@ -1,31 +1,24 @@
-import { prisma } from "@/lib/prisma";
-import { NextResponse } from "next/server";
+export const dynamic = "force-dynamic";
 
-export async function POST(req: Request) {
+import { prisma } from "@/lib/prisma";
+import { NextRequest, NextResponse } from "next/server";
+
+export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    const tasks: { id: number }[] = body.tasks ?? [];
+    const updates = body.tasks;
 
-    if (!Array.isArray(tasks)) {
-      return NextResponse.json(
-        { error: "Invalid payload" },
-        { status: 400 }
-      );
+    for (const task of updates) {
+      await prisma.task.update({
+        where: { id: task.id },
+        data: { position: task.position },
+      });
     }
-
-    await prisma.$transaction(
-      tasks.map((task, index) =>
-        prisma.task.update({
-          where: { id: task.id },
-          data: { position: index },
-        })
-      )
-    );
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("REORDER ERROR:", error);
+    console.error(error);
     return NextResponse.json(
       { error: "Failed to reorder tasks" },
       { status: 500 }
