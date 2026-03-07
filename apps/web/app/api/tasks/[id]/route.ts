@@ -1,16 +1,16 @@
 import { prisma } from "@/lib/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 type Params = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export async function PUT(
-  _req: Request,
+  _req: NextRequest,
   { params }: Params
 ) {
   try {
-    const { id } = params;
+    const { id } = await params;
     const taskId = Number(id);
 
     const existing = await prisma.task.findUnique({
