@@ -1,17 +1,12 @@
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-type Params = {
-  params: Promise<{ id: string }>;
-};
-
 export async function PUT(
   _req: NextRequest,
-  { params }: Params
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await params;
-    const taskId = Number(id);
+    const taskId = Number(params.id);
 
     const existing = await prisma.task.findUnique({
       where: { id: taskId },
@@ -27,7 +22,7 @@ export async function PUT(
     const updated = await prisma.task.update({
       where: { id: taskId },
       data: {
-        done: !Boolean(existing.done),
+        done: !existing.done,
       },
     });
 
