@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { z } from "zod";
 
 // Task schema

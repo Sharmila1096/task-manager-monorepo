@@ -1,28 +1,25 @@
-<<<<<<< HEAD
-export function Button({
-  children,
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
+import * as React from "react";
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  children: React.ReactNode;
+}
+
+export function Button({ children, ...props }: ButtonProps) {
   return (
     <button
-      className="px-4 py-2 rounded-xl bg-black text-white hover:opacity-80"
       {...props}
+      style={{
+        padding: "8px 16px",
+        borderRadius: "6px",
+        border: "none",
+        backgroundColor: "#2563eb",
+        color: "white",
+        fontWeight: 500,
+        cursor: "pointer"
+      }}
     >
       {children}
     </button>
   );
-=======
-export function Button({
-  children,
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  return (
-    <button
-      className="px-4 py-2 rounded-xl bg-black text-white hover:opacity-80"
-      {...props}
-    >
-      {children}
-    </button>
-  );
->>>>>>> 97ec523c03aa7a64e6b8e08c1a6a4bd903d446de
 }
