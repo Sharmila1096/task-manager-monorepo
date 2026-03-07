@@ -1,22 +1,11 @@
-<<<<<<< HEAD
 {
   "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
     "outDir": "dist",
     "rootDir": "src",
     "declaration": true,
-    "emitDeclarationOnly": true
+    "declarationMap": true
   },
-  "include": ["src"]
-=======
-{
-  "extends": "@repo/typescript-config/base.json",
-  "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
-    "declaration": true,
-    "emitDeclarationOnly": true
-  },
-  "include": ["src"]
->>>>>>> 97ec523c03aa7a64e6b8e08c1a6a4bd903d446de
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
