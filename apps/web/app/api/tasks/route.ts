@@ -2,8 +2,10 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+
 export async function GET() {
+  const { prisma } = await import("@/lib/prisma");
+
   try {
     const tasks = await prisma.task.findMany({
       orderBy: { position: "asc" },
@@ -20,6 +22,8 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  const { prisma } = await import("@/lib/prisma");
+
   try {
     const body = await req.json();
 
