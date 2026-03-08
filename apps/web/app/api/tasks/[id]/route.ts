@@ -1,12 +1,14 @@
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
-import { prisma } from "@/lib/prisma";
-import { NextResponse,NextRequest } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
+
 export async function PUT(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  const { prisma } = await import("@/lib/prisma");
+
   try {
     const taskId = Number(params.id);
 
@@ -40,6 +42,8 @@ export async function DELETE(
   req: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  const { prisma } = await import("@/lib/prisma");
+
   try {
     const taskId = Number(params.id);
 
