@@ -1,15 +1,15 @@
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
 import { prisma } from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(
   req: NextRequest,
-  context: { params: Promise<{ id: string }> }
+  { params }: { params: { id: string } }
 ) {
   try {
-    const { id } = await context.params;
-    const taskId = Number(id);
+    const taskId = Number(params.id);
 
     const existing = await prisma.task.findUnique({
       where: { id: taskId },
@@ -24,16 +24,35 @@ export async function PUT(
 
     const updated = await prisma.task.update({
       where: { id: taskId },
-      data: {
-        done: !existing.done,
-      },
+      data: { done: !existing.done },
     });
 
     return NextResponse.json(updated);
-  } catch (error) {
-    console.error(error);
+  } catch (err) {
+    console.error(err);
     return NextResponse.json(
-      { error: "Server error" },
+      { error: "Update failed" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    const taskId = Number(params.id);
+
+    await prisma.task.delete({
+      where: { id: taskId },
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json(
+      { error: "Delete failed" },
       { status: 500 }
     );
   }
