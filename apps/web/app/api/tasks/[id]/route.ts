@@ -1,9 +1,8 @@
-export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 import { prisma } from "@/lib/prisma";
-import { NextRequest, NextResponse } from "next/server";
-
+import { NextResponse,NextRequest } from "next/server";
 export async function PUT(
   req: NextRequest,
   { params }: { params: { id: string } }
