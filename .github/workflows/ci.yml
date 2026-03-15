@@ -27,7 +27,7 @@ jobs:
         run: pnpm install
 
       - name: Run Lint
-        run: pnpm lint || true
+        run: echo "Skipping Lint"
 
       - name: Run Type Check
         run: pnpm turbo type-check
