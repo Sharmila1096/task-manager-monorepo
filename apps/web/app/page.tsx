@@ -28,7 +28,7 @@ export default function Page() {
       if (!res.ok) return;
       const data: Task[] = await res.json();
       setTasks(data);
-    } catch {}
+    } catch (error){console.error(error);}
   };
 
   useEffect(() => {
